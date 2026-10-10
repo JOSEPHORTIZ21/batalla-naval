@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mar-950: #040b16;
+  --color-mar-900: #07162a;
+  --color-mar-800: #0b2440;
+  --color-mar-700: #123a5e;
+  --color-sonar: #2ef2c8;
+  --color-laton: #e9c77b;
+  --color-alerta: #ff4d5e;
+
+  --animate-aparecer: aparecer 0.35s ease-out;
+  --animate-fundido: fundido 0.3s ease-out both;
+  --animate-texto: aparecer 0.6s ease-out both;
+  --animate-pulso: pulso 2s ease-in-out infinite;
+  --animate-golpe: golpe 0.3s ease-out;
+  --animate-onda: onda 0.8s ease-out forwards;
+  --animate-onda-lenta: onda 1.3s ease-out both;
+  --animate-entra-izq: entra-izq 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-entra-der: entra-der 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-hundir: hundir 2.2s ease-in both;
+  --animate-flotar: flotar 3s ease-in-out infinite;
+  --animate-destello: destello 0.8s ease-out both;
+
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fundido {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes pulso {
+    50% {
+      opacity: 0.45;
+    }
+  }
+  @keyframes golpe {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    60% {
+      transform: scale(1.25);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes onda {
+    from {
+      opacity: 0.9;
+      transform: scale(0.3);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+  }
+  @keyframes entra-izq {
+    from {
+      opacity: 0;
+      transform: translateX(-120%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes entra-der {
+    from {
+      opacity: 0;
+      transform: translateX(120%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes hundir {
+    from {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(90px) rotate(14deg);
+    }
+  }
+  @keyframes flotar {
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+  @keyframes destello {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.55;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-chakra), ui-sans-serif, system-ui, sans-serif;
+  --font-estencil: var(--font-black-ops), var(--font-chakra), ui-sans-serif,
+    sans-serif;
+}
+
+/* ───────── Fondo militar ─────────
+   Camuflaje generado con ruido SVG (dos capas de manchas),
+   cuadrícula táctica, resplandor de sonar y viñeta. */
+:root {
+  --camo-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.009' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.23 0 0 0 0 0.15 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0.5 0 0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --camo-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.005' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.12 0 0 0 0 0.18 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.6 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+
+.fondo-mar {
+  background-color: #050d12;
+  background-image:
+    radial-gradient(ellipse at center, transparent 35%, rgb(0 0 0 / 0.7) 100%),
+    radial-gradient(ellipse at 50% -10%, rgb(46 242 200 / 0.12), transparent 55%),
+    linear-gradient(rgb(46 242 200 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(46 242 200 / 0.05) 1px, transparent 1px),
+    var(--camo-a),
+    var(--camo-b);
+  background-size:
+    auto,
+    auto,
+    32px 32px,
+    32px 32px,
+    520px 520px,
+    640px 640px;
+}
+
+/* Franja de advertencia (latón y negro) */
+.franja {
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-laton) 0 10px,
+    #0a0a0a 10px 20px
+  );
+  opacity: 0.85;
+}
+
+/* Esquinas tipo mira alrededor de los tableros */
+.marco-tactico {
+  position: relative;
+}
+.marco-tactico::before,
+.marco-tactico::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-laton);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.marco-tactico::before {
+  top: -5px;
+  left: -5px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.marco-tactico::after {
+  right: -5px;
+  bottom: -5px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Barrido del radar */
+.barrido {
+  background: conic-gradient(
+    from 0deg,
+    rgb(46 242 200 / 0.55),
+    transparent 28%
+  );
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barrido {
+    animation: none;
+  }
+  .escena * {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+}
